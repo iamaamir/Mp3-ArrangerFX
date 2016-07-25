@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<VBox prefHeight="130.0" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3a.arrangerfx.FXMLDocumentController">
+   <children>
+      <TextField fx:id="path" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="260.0" />
+      <HBox prefWidth="260.0" spacing="10.0">
+         <children>
+            <Button fx:id="selectFolder" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" onAction="#browseButtonClick" >
+               <graphic>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/folder.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ChoiceBox fx:id="choice" prefHeight="25.0" prefWidth="110.0" />
+            <Button fx:id="go" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" onAction="#goButtonClick" />
+         </children>
+      </HBox>
+      <StackPane prefHeight="20.0" prefWidth="300.0">
+         <children>
+            <ProgressBar fx:id ="progressBar" prefWidth="260.0" progress="0.0" visible="false" />
+            <Label fx:id="copyrightLabel" text="Copyright Aamir khan 2016" />
+         </children>
+      </StackPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <stylesheets>
+       <URL value = "@../resources/style.css"/>
+   </stylesheets>
+</VBox>

@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 23, 2016, 11:34:35 AM
+    Author     : Aamir khan
+*/
+
+.progress-bar > .bar {
+     /*-fx-blue: #248ABF;*/
+    -fx-background-insets: 1 1 2 1;
+    -fx-padding: 0.50em;
+    -fx-background-color: linear-gradient(
+        from 0px .75em to .75em 0px,
+        repeat,
+        #248ABF 0%,
+        #248ABF 49%,
+        derive(#248ABF, 30%) 50%,
+        derive(#248ABF, 30%) 99%
+    );
+}
