@@ -18,6 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tooltip;
 import javafx.stage.DirectoryChooser;
 import javafx.util.Duration;
 import static mp3a.arrangerfx.Util.getResource;
@@ -30,9 +31,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TextField path;
-    @FXML
-    private Button browse;
-
     @FXML
     private Button go;
     @FXML
@@ -52,6 +50,11 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        selectFolder.setTooltip(new Tooltip(getResource("BROWSE")));
+        choice.setTooltip(new Tooltip(getResource("CHOICE_TIP")));
+
 
         dirChooser = new DirectoryChooser();
         dirChooser.setTitle(getResource("CHOOSER"));
