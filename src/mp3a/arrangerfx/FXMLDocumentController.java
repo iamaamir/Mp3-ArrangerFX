@@ -2,6 +2,7 @@ package mp3a.arrangerfx;
 
 import java.io.File;
 import java.net.URL;
+import java.time.Year;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -59,7 +60,7 @@ public class FXMLDocumentController implements Initializable {
 
         selectFolder.setText(getResource("BROWSE"));
         go.setText(getResource("GO"));
-        copyrightLabel.setText(getResource("COPYRIGHT"));
+        copyrightLabel.setText(getResource("COPYRIGHT").replace("%YEAR%", currentYear()));
         
         final ObservableList<String> CHOICE_LIST;
         CHOICE_LIST = FXCollections.observableArrayList(getResource("CHOICE_LIST").split(","));
@@ -87,6 +88,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void goButtonClick(ActionEvent e) {
         copyrightLabel.setVisible(true);
+    }
+
+    private String currentYear() {
+        final int CURRENT_YEAR = Year.now().getValue();
+        return (CURRENT_YEAR < 2018) ? "2018" : String.valueOf(CURRENT_YEAR);
     }
 
 }
