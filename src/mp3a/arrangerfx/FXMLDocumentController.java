@@ -18,6 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ProgressBar;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import static mp3a.arrangerfx.Util.getResource;
 
@@ -42,8 +43,11 @@ public class FXMLDocumentController implements Initializable {
     private Button selectFolder;
     @FXML
     private ProgressBar progressBar;
-    private final String MUSIC_DIRECTORY_PATH = 
-            System.getProperty("user.home") + File.separatorChar + "Music";
+    private final String MUSIC_DIRECTORY_PATH;
+
+    public FXMLDocumentController() {
+        this.MUSIC_DIRECTORY_PATH = System.getProperty("user.home") + File.separatorChar + "Music";
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
