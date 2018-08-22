@@ -18,7 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ProgressBar;
-import javafx.stage.FileChooser;
+import javafx.stage.DirectoryChooser;
 import javafx.util.Duration;
 import static mp3a.arrangerfx.Util.getResource;
 
@@ -43,14 +43,20 @@ public class FXMLDocumentController implements Initializable {
     private Button selectFolder;
     @FXML
     private ProgressBar progressBar;
-    private final String MUSIC_DIRECTORY_PATH;
+    private final String DEFAULT_MUSIC_DIRECTORY;
+    private DirectoryChooser dirChooser;
 
     public FXMLDocumentController() {
-        this.MUSIC_DIRECTORY_PATH = System.getProperty("user.home") + File.separatorChar + "Music";
+        this.DEFAULT_MUSIC_DIRECTORY = System.getProperty("user.home") + File.separatorChar + "Music";
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        dirChooser = new DirectoryChooser();
+        dirChooser.setTitle(getResource("CHOOSER"));
+        dirChooser.setInitialDirectory(new File(DEFAULT_MUSIC_DIRECTORY));
+
         Timeline task = new Timeline(
                 new KeyFrame(
                         Duration.ZERO,
@@ -65,13 +71,13 @@ public class FXMLDocumentController implements Initializable {
         selectFolder.setText(getResource("BROWSE"));
         go.setText(getResource("GO"));
         copyrightLabel.setText(getResource("COPYRIGHT").replace("%YEAR%", currentYear()));
-        
+
         final ObservableList<String> CHOICE_LIST;
         CHOICE_LIST = FXCollections.observableArrayList(getResource("CHOICE_LIST").split(","));
         choice.getItems().addAll(CHOICE_LIST);
         choice.getSelectionModel().selectFirst();
-        
-        path.setText(MUSIC_DIRECTORY_PATH);
+
+        path.setText(DEFAULT_MUSIC_DIRECTORY);
 
         copyrightLabel.visibleProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (newValue == true) {
@@ -86,12 +92,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public void browseButtonClick(ActionEvent e) {
-        copyrightLabel.setVisible(false);
+        File selectedDirectory = dirChooser.showDialog(null);
+        path.setText(selectedDirectory.getAbsolutePath());
+
     }
 
     @FXML
     public void goButtonClick(ActionEvent e) {
-        copyrightLabel.setVisible(true);
+        copyrightLabel.setVisible(false);
     }
 
     private String currentYear() {
